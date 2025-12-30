@@ -4,8 +4,12 @@
             <input type="text" class="text-field" name="" id="" placeholder="Search"> 
             <button class="btn-primary">Search</button>
         </div>
-        <button class="btn-primary flex-row items-center gap-3"><lucide-icon [img]="PlusIcon"></lucide-icon> Create Issues/Task</button>
+        <button class="btn-primary flex-row items-center gap-3" (click)="showModal = true"><lucide-icon [img]="PlusIcon"></lucide-icon> Create Issues/Task</button>
     </form>
 </div>
 
-<app-modal></app-modal>
+<app-modal [isVisible]="showModal" title="Sample Header" (close)="showModal = false">
+    <p class="text-black">
+        This is reusable modal content 🎉
+    </p>
+</app-modal>

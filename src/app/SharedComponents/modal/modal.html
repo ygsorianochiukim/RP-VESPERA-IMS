@@ -1,10 +1,17 @@
-<div class="page-content fixed top-0 left-0 bg-black/50 flex-col justify-center items-center">
-    <div class="w-2/4 h-50 bg-primary rounded-xl p-8">
-        <div class="flex-row justify-between border-b-2 pb-2">
-            <header class="text-black font-nunito !text-xl">Sample Header</header>
-            <button>
-                <lucide-icon [img]="CloseIcon" color="#000"></lucide-icon>
-            </button>
-        </div>
+@if (isVisible) {
+  <div class="fixed inset-0 bg-black/50 flex justify-center items-center z-50">
+    <div class="w-2/4 bg-primary rounded-xl p-4">
+      
+      <div class="flex justify-between items-center border-b pb-2">
+        <h2 class="text-black font-nunito text-xl">
+          {{ title }}
+        </h2>
+
+        <button (click)="onClose()" class="!p-2"><lucide-icon [img]="CloseIcon" color="#000" ></lucide-icon> </button>
+      </div>
+      <div class="mt-4">
+        <ng-content></ng-content>
+      </div>
     </div>
-</div>
+  </div>
+}
