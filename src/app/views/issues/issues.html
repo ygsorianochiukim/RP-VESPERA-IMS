@@ -6,10 +6,84 @@
         </div>
         <button class="btn-primary flex-row items-center gap-3" (click)="showModal = true"><lucide-icon [img]="PlusIcon"></lucide-icon> Create Issues/Task</button>
     </form>
-</div>
+    <table class="tableDisplay">
+        <thead>
+            <tr>
+                <th class="!pl-5">#</th>
+                <th>Ticket Number</th>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Date Created</th>
+                <th>Date Started</th>
+                <th>Assigned To</th>
+                <th>Status</th>
+                <th>Priority</th>
+                <th class="text-center">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let issue of IssueList; let i = index">
+                <td><span class="p-1 px-3 bg-accent text-white rounded-md">{{ i + 1 }}</span></td>
+                <td>{{ issue.ticket_no }}</td>
+                <td>{{ issue.concern_title }}</td>
+                <td>{{ issue.concern_description }}</td>
+                <td>{{ issue.created_at | date:'mediumDate' }}</td>
+                <td>{{ issue.date_start | date:'mediumDate' }}</td>
+                <td>{{ issue.ticket_status }}</td>
+                <td>{{ issue.status_priority }}</td>
+                <td>{{ issue.assignee_id }}</td>
+                <td class="text-center">
+                    <Button class="btn-success text-white">View</Button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 
-<app-modal [isVisible]="showModal" title="Sample Header" (close)="showModal = false">
-    <p class="text-black">
-        This is reusable modal content 🎉
-    </p>
+
+<app-modal [isVisible]="showModal" title="Issue Information" (close)="showModal = false">
+    <form (ngSubmit)="storeIssue()">
+        <div class="field-container">
+            <label for="">Issue Title</label>
+            <div class="input-text-container">
+                <lucide-icon [img]="TextIcon"></lucide-icon>
+                <input type="text" name="concern_title" [(ngModel)]="IssueField.concern_title" class="input-field">
+            </div>
+        </div>
+        <div class="field-container">
+            <label for="">Description</label>
+            <div class="input-text-container">
+                <lucide-icon [img]="DescriptionIcon"></lucide-icon>
+                <textarea class="input-field h-20" name="concern_description" [(ngModel)]="IssueField.concern_description" ></textarea>
+            </div>
+        </div>
+        <div class="field-container">
+            <label for="">Task Priority</label>
+            <div class="input-text-container">
+                <lucide-icon [img]="OptionsIcon"></lucide-icon>
+                <select name="status_priority" [(ngModel)]="IssueField.status_priority" id="" class="input-field">
+                    <option value="Low">Low</option>
+                    <option value="Medium">Medium</option>
+                    <option value="Major">Major</option>
+                    <option value="Critical">Critical</option>
+                    <option value="Show Stoppper">Show Stoppper</option>
+                </select>
+            </div>
+        </div>
+        <div class="field-container">
+            <label for="">Task Priority</label>
+            <div class="input-text-container">
+                <lucide-icon [img]="AssigneeIcon"></lucide-icon>
+                <select  name="assignee_id" [(ngModel)]="IssueField.assignee_id" id="" class="input-field">
+                    <option value="1">Low</option>
+                    <option value="2">Medium</option>
+                    <option value="3">Major</option>
+                    <option value="4">Critical</option>
+                    <option value="5">Show Stoppper</option>
+                </select>
+            </div>
+        </div>
+        <button class="btn-primary w-full !rounded-full mt-3">
+            Confirm Issue
+        </button>
+    </form>
 </app-modal>

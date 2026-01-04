@@ -1,14 +1,14 @@
 @if (isVisible) {
     <div class="fixed inset-0 bg-black/50 flex justify-center items-center z-50">
         <div class="w-2/4 bg-primary rounded-xl p-4">
-            <div class="flex justify-between items-center border-b pb-2">
-                <h2 class="text-black font-nunito text-xl">
+            <div class="flex justify-between items-center border-b-3 border-black/50 pb-2">
+                <h2 class="text-black font-nunito font-semibold !text-2xl">
                 {{ title }}
                 </h2>
 
                 <button (click)="onClose()" class="!p-2"><lucide-icon [img]="CloseIcon" color="#000" ></lucide-icon> </button>
             </div>
-            <div class="mt-4">
+            <div class="mt-1">
                 <ng-content></ng-content>
             </div>
         </div>
